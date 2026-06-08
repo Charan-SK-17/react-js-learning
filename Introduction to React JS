@@ -1,0 +1,118 @@
+# 1. React JS
+-React JS is an open-source JavaScript library used to build user interfaces. It was developed by Facebook.
+
+## 1.1 Why React JS?
+--Performant websites
+--Fewer lines of code
+--Improves readability of code
+--Less time consuming
+--Open Source
+--Reusable code
+
+## 1.2 Advantages of React JS
+--Easy to Learn
+--Large Community
+--Developer Toolset
+
+
+## Creating Elements using React JS
+
+# React CDN(HTML)
+<script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+
+# React.createElement() 
+-- The React.createElement() method is used to create an element using React JS. It is similar to the document.createElement() method in regular JavaScript.
+
+# React.createElement(type, props);
+-- type - Tag names like div, h1 and p, etc.
+-- props - Properties like className, onClick and id, etc.
+
+@example:
+<script type="module"> //The type attribute value of the HTML script element should be module to run React JS.
+  const elementProps = { className: "greeting", children: "Hello world!" };
+  const elementType = "h1";
+  const element = React.createElement(elementType, elementProps);
+</script>
+
+# ReactDOM.render()
+-- The ReactDOM.render() method is used to display the React element.
+
+# ReactDOM.render(reactElement, container); // reactElement - What to render,container - Where to render
+
+@example
+<body>
+  <div id="root"></div>
+  <script type="module">
+    const elementProps = { className: "greeting", children: "Hello world!" };
+    const elementType = "h1";
+    const element = React.createElement(elementType, elementProps);
+    ReactDOM.render(element, document.getElementById("root"));
+  </script>
+</body>
+
+##JSX
+React JS introduced a new HTML like syntax named JSX to create elements.
+
+const element = <h1 className="greeting">Hello World</h1>; 
+
+The above JSX element compiles to,
+
+const elementProps = { className: "greeting", children: "Hello world!" };
+const element = React.createElement("h1", elementProps);
+
+#Babel
+JSX is not JavaScript. We have to convert it to JavaScript using a code compiler. Babel is one such tool.
+
+It is a JavaScript compiler that translates JSX into regular JavaScript.
+
+@example
+<script type="text/babel"> // For JSX, the type attribute value of the HTML script element should be text/babel.
+  const elementProps = { className: "greeting", children: "Hello world!" };  //For providing class names in JSX, the attribute name should be className.
+  const element = React.createElement("h1", elementProps);
+  const element = <h1 className="greeting">Hello World</h1>;
+  ReactDOM.render(element, document.getElementById("root"));
+</script>
+
+# Embedding Variables and Expressions in JSX
+We can embed the variables and expressions using the flower brackets {}.
+
+@Embedding variables in JSX:
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const name = "Rahul";
+    const className = "greeting";
+    const element = <h1 className="greeting">Hello World</h1>;
+    const element = <h1 className={className}>Hello {name}!</h1>;
+    ReactDOM.render(element, document.getElementById("root"));
+  </script>
+</body>
+
+
+@Embedding Expressions in JSX:
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const fullName = (user) => user.firstName + " " + user.lastName;
+    const user = { firstName: "Rahul ", lastName: "Attuluri" };
+    const element = <h1 className="greeting"> Hello, {fullName(user)}!</h1>;
+    ReactDOM.render(element, document.getElementById("root"));
+  </script>
+</body>
+
+# Nesting JSX elements
+The ReactDOM.render() method returns only one element in render. So, we need to wrap the element in parenthesis when writing the nested elements.
+
+<body>
+  <script type="text/babel">
+    const element = (
+      <div>
+        <h1 className="greeting">Hello!</h1>
+        <p>Good to see you here.</p>
+      </div>
+    );
+    ReactDOM.render(element, document.getElementById("root"));
+  </script>
+</body>
